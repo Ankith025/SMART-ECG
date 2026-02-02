@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART ECG — Login</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='logo1.png') }}" type="image/icon type">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #e8f1ff, #f8fbff);
+      background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+      color: #0b1f3a;
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: #004aad !important;
+    }
+    .nav-link {
+      color: #0b1f3a !important;
+      font-weight: 500;
+    }
+    .nav-link:hover {
+      color: #007bff !important;
+    }
+
+    /* GLASS CARD */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      padding: 40px 45px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      transition: 0.3s ease;
+      margin-top: 110px;
+    }
+    .glass-card:hover {
+      transform: scale(1.01);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #6cb5ff, #007bff);
+      border: none;
+      border-radius: 25px;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .switch-link {
+      color: #007bff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .switch-link:hover {
+      text-decoration: underline;
+    }
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('home') }}">
+        <i class="fa-solid fa-heart-pulse"></i> SMART ECG
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+          <li class="nav-item active"><a class="nav-link" href="{{ url_for('index') }}">User</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- MAIN AUTH CARD -->
+  <div class="container d-flex justify-content-center">
+    <div class="glass-card col-md-5 text-center">
+
+      {% if msg %}
+      <div class="alert alert-info">{{ msg }}</div>
+      {% endif %}
+
+      <!-- LOGIN FORM -->
+      <div id="loginForm">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDzdC8tyLdAaX5o6jygK9y6ruUdNcAyNqLjZTW1XuN6w&s"
+             class="profile-img">
+
+        <h2 class="mb-4">User Login</h2>
+
+        <form method="post" action="{{ url_for('userlog') }}">
+          <div class="form-group text-left">
+            <label>Username</label>
+            <input type="text" class="form-control" name="name" required>
+          </div>
+
+          <div class="form-group text-left">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" required>
+          </div>
+
+          <button class="btn btn-primary btn-block mt-3">Login</button>
+
+          <p class="mt-3">
+            New here? <span class="switch-link" onclick="switchForm('signup')">Create an account</span>
+          </p>
+        </form>
+      </div>
+
+
+      <!-- SIGNUP FORM -->
+      <div id="signupForm" class="hidden">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDzdC8tyLdAaX5o6jygK9y6ruUdNcAyNqLjZTW1XuN6w&s"
+             class="profile-img">
+
+        <h2 class="mb-4">User Registration</h2>
+
+        <form method="post" action="{{ url_for('userreg') }}">
+          <div class="form-group text-left">
+            <label>Username</label>
+            <input type="text" class="form-control" name="name" required>
+          </div>
+
+          <div class="form-group text-left">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" required>
+          </div>
+
+          <div class="form-group text-left">
+            <label>Mobile Number</label>
+            <input type="tel" class="form-control" name="phone" required>
+          </div>
+
+          <div class="form-group text-left">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" required>
+          </div>
+
+          <button class="btn btn-primary btn-block mt-3">Register</button>
+
+          <p class="mt-3">
+            Already have an account?
+            <span class="switch-link" onclick="switchForm('login')">Sign in</span>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script>
+    function switchForm(type) {
+      if (type === "signup") {
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("signupForm").classList.remove("hidden");
+      } else {
+        document.getElementById("signupForm").classList.add("hidden");
+        document.getElementById("loginForm").classList.remove("hidden");
+      }
+    }
+  </script>
+
+</body>
+</html>

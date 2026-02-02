@@ -1,0 +1,147 @@
+{% extends 'main.html' %}
+{% block content %}
+{% if message %}
+  <div class="alert alert-danger">{{ message }}</div>
+{% endif %}
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SMART ECG — Official</title>
+  
+  <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(150deg, #f4f7fa, #d9e2ec);
+      font-family: 'Poppins', sans-serif;
+      color: #2c3e50;
+      background-attachment: fixed;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 25px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      transition: all 0.3s ease-in-out;
+      padding: 30px 20px;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    }
+
+    .jumbotron {
+      background: linear-gradient(120deg, #6dd5ed, #2193b0);
+      color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+      margin-bottom: 3rem;
+      padding: 4rem 2rem;
+    }
+
+    h1, h2 {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .icon-circle {
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      color: #fff;
+      font-size: 2.2rem;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      background-color: rgba(44,62,80,0.05);
+      border-top: 1px solid rgba(44,62,80,0.1);
+      padding: 20px;
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <main role="main" class="container">
+
+    <!-- Hero Section -->
+    <section class="jumbotron text-center">
+      <h1 class="display-5 fw-bold">Smart IoT ECG System</h1>
+      <p class="lead mt-3">Empowering healthcare with AI-assisted real-time heart rhythm monitoring and arrhythmia detection.</p>
+    </section>
+
+    <!-- Feature Cards -->
+    <div class="row text-center g-4">
+      <div class="col-md-6">
+        <div class="glass-card">
+          <div class="icon-circle">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h2>About Cardiac</h2>
+          <p>Cardiac arrhythmia is an irregular heartbeat disrupting normal heart rhythm. Early detection via ECG ensures timely intervention through clinical or lifestyle management.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="glass-card">
+          <div class="icon-circle">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h2>Algorithm</h2>
+          <p>SMART ECG leverages the Weighted KNN algorithm for accurate arrhythmia classification. Data proximity weighting optimizes predictive performance across diverse ECG samples.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center g-4 mt-4">
+      <div class="col-md-6">
+        <div class="glass-card">
+          <div class="icon-circle">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h2>Efficiency</h2>
+          <p>Our ML-based system achieves <b>94% accuracy</b> in arrhythmia detection, ensuring reliable real-time cardiac monitoring and decision support.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="glass-card">
+          <div class="icon-circle">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <h2>About ECG</h2>
+          <p>Trained on over 1300 ECG samples from the Kaggle Cardiac Arrhythmia dataset, our system provides efficient signal classification and visualization for clinicians and researchers.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 SMART ECG — Professional AI Health Solution | Designed by Team SMART ECG</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="og:title" content="Cardiac Arrhythmia Prediction">
+  <meta name="og:image" content="static/logo1.png">
+  <meta name="keywords" content="ECG, Smart ECG, AI, Deep Learning, Real-time ECG, Arrhythmia Prediction">
+  <meta name="description" content="Smart IoT ECG System for Real-Time Heart Rhythm Analysis">
+  <title>SMART ECG</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='logo1.png') }}" type="image/png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+  <style>
+    /* --- Base Theme --- */
+    body {
+      background: linear-gradient(135deg, #e6f0ff, #f8fbff);
+      background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+      color: #000 !important;
+      font-weight: 600;
+    }
+
+    .navbar a:hover {
+      color: #0078ff !important;
+      transition: 0.3s;
+    }
+
+    /* --- Container --- */
+    main {
+      margin-top: 100px;
+      min-height: 80vh;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(8px);
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      color: #555;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    footer span {
+      color: #0078ff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-sm fixed-top">
+    <a class="navbar-brand" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='logo1.png') }}" height="35" class="mr-2">
+      SMART ECG
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="{{ url_for('home') }}" class="nav-link">
+              <i class="fa fa-home"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('index') }}" class="nav-link">
+              <i class="fa fa-user"></i> User
+            </a>
+          </li>
+        </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container-fluid">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    SMART ECG — <span>Real-Time AI-Powered ECG Monitoring</span>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

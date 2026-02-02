@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="og:title" content="Cardiac Arrhythmia Prediction">
+  <meta name="author" content="Venkata Sreeram">
+  <meta name="og:image" content="static/logo1.png">
+  <meta name="keywords" content="Flask, Machine Learning, Deep Learning, Artificial Intelligence, AI, ML, DL, Web Development">
+  <meta name="description" content="A Machine Learning and Deep Learning based webapp for Multiple Disease Prediction.">
+  <title>Cardiac Arrhythmia Prediction</title>
+  <link rel="icon" href="{{ url_for('static', filename='logo1.png') }}" type="image/png">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0078ff;
+      --secondary: #b4d5ff;
+      --bg-gradient: linear-gradient(135deg, #e9f0ff, #f6faff);
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --border: rgba(200, 210, 255, 0.4);
+      --shadow: 0 4px 20px rgba(0, 80, 255, 0.08);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-gradient);
+      color: #1a1a2e;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      backdrop-filter: blur(4px);
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .navbar-brand {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.4rem;
+    }
+
+    .nav-link {
+      color: #1a1a2e !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary) !important;
+    }
+
+    /* Animated card */
+    .result-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .result-card:hover {
+      box-shadow: 0 8px 30px rgba(0, 120, 255, 0.15);
+      transform: translateY(-5px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .icon-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 15px rgba(0,120,255,0.15);
+      animation: pulse 2s infinite;
+    }
+
+    .icon-circle i {
+      font-size: 40px;
+      color: var(--primary);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,120,255,0.3); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(0,120,255,0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,120,255,0); }
+    }
+
+    h1 {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .status-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 1rem;
+      box-shadow: 0 3px 8px rgba(0,120,255,0.3);
+    }
+
+    .details {
+      text-align: left;
+      margin-top: 2rem;
+    }
+
+    .details h4 {
+      color: #2e2e4f;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .details p {
+      color: #444;
+      margin-bottom: 0.4rem;
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, #0078ff, #4ab3ff);
+      border: none;
+      border-radius: 14px;
+      padding: 0.7rem 2rem;
+      color: white;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,120,255,0.25);
+    }
+
+    footer {
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.9rem;
+      margin-top: auto;
+      padding: 15px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('home') }}">SMART ECG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('fetalPage') }}">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="result-card">
+          <div class="icon-circle">
+            <i class="bi bi-heart-pulse"></i>
+          </div>
+
+          <h1>Smart AI Result</h1>
+          <p class="status-badge">Patient {{name}} — {{status}}</p>
+
+          <div class="mt-4">
+            <a href="{{ url_for('fetalPage') }}" class="btn-gradient">Recheck</a>
+          </div>
+
+          {% if pred != 1 %}
+          <div class="details mt-5">
+            <h4><i class="bi bi-activity"></i> Risk Level:</h4>
+            <p>{{risk[0]}}</p>
+
+            <h4><i class="bi bi-shield-check"></i> Precautions:</h4>
+            <p>1. {{risk[1]}}</p>
+            <p>2. {{risk[2]}}</p>
+
+            <h4><i class="bi bi-person-lines-fill"></i> Lifestyle Changes:</h4>
+            <p>1. {{risk[3]}}</p>
+            <p>2. {{risk[4]}}</p>
+
+            <h4><i class="bi bi-graph-up-arrow"></i> Deviation Level:</h4>
+            <p>{{cent}}%</p>
+
+            <hr class="my-4">
+            <p>⚠️ It is advised to consult a cardiologist for a professional diagnosis.</p>
+
+            <div class="mt-3 d-flex gap-3">
+              <a class="btn-gradient" href="https://www.who.int/" target="_blank"><i class="bi bi-globe"></i> Learn More</a>
+              <a class="btn-gradient" href="https://ihrs.in/" target="_blank"><i class="bi bi-hospital"></i> Cardiac Specialist</a>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 SMART ECG | AI Medical Intelligence
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
